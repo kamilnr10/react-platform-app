@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const LoginWrapper = styled.div`
+  height: 100vh;
+`;
+
 export const LoginForm = styled.div`
   height: 100%;
   width: 100%;

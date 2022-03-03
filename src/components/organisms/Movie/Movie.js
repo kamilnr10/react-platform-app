@@ -16,7 +16,6 @@ export const Movie = ({ Id, Title, Images, Description }) => {
         </Image>
       </ImageContainer>
       <p>{Description}</p>
-
       <Link to={`/dashboard/${Id}`}>
         <Button>Play</Button>
       </Link>

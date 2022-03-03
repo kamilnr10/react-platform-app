@@ -10,15 +10,21 @@ export const PaginationWrapper = styled.div`
     display: flex;
 
     li {
-      width: 25px;
       padding: 5px;
-      margin: 10px 20px;
+      margin: 10px 8px;
       border-radius: 5px;
-      text-align: center;
       list-style: none;
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
 
       &.active {
         background-color: ${({ theme }) => theme.colors.secondary};
+      }
+
+      a {
+        width: 20px;
+        text-align: center;
       }
     }
   }

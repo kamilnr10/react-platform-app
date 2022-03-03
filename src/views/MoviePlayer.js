@@ -3,9 +3,26 @@ import { Button } from 'components/atoms/Button/Button';
 import ReactPlayer from 'react-player';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchData } from 'helpers/fetchData';
+import styled from 'styled-components';
+
+const ReturnButton = styled(Button)`
+  background-image: none;
+  background-color: transparent;
+  border: 2px solid #756ef4;
+  color: #756ef4;
+  transition: 0.3s ease;
+
+  &:hover {
+    background-color: #756ef4;
+    color: white;
+  }
+`;
+
+const MoviePlayerWrapper = styled.div``;
 
 export const MoviePlayer = () => {
   const [movieData, setMovieData] = useState({});
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   let { id } = useParams();
   id = parseInt(id);
@@ -18,13 +35,23 @@ export const MoviePlayer = () => {
       .then((data) => {
         setMovieData(data);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        console.log(error);
+        setError(error.message);
+      });
   }, []);
 
   return (
-    <div>
-      <Button onClick={() => navigate(-1)}>go back</Button>
-      <ReactPlayer url={movieData.ContentUrl} playing={true} controls={true} />
-    </div>
+    <MoviePlayerWrapper>
+      <ReturnButton onClick={() => navigate(-1)}>go back</ReturnButton>
+      {error && error.message}
+      <ReactPlayer
+        url={movieData.ContentUrl}
+        playing={true}
+        controls={true}
+        width="100%"
+        height="100%"
+      />
+    </MoviePlayerWrapper>
   );
 };

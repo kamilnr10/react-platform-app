@@ -8,6 +8,7 @@ import {
   LoginTextBox,
   Button,
   ErrorMessage,
+  LoginWrapper,
 } from './Login.styles';
 
 const Login = () => {
@@ -27,26 +28,28 @@ const Login = () => {
   };
 
   return (
-    <LoginForm as="form" onSubmit={handleSubmit}>
-      <LoginContainer>
-        {errors && <p>{errors}</p>}
-        <LoginTextBox
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <LoginTextBox
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          onKeyPress={handleKeypress}
-          placeholder="Password"
-        />
-        <Button>Login</Button>
-        <CircleBackground />
-      </LoginContainer>
-    </LoginForm>
+    <LoginWrapper>
+      <LoginForm as="form" onSubmit={handleSubmit}>
+        <LoginContainer>
+          {errors && <p>{errors}</p>}
+          <LoginTextBox
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail Address"
+          />
+          <LoginTextBox
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyPress={handleKeypress}
+            placeholder="Password"
+          />
+          <Button>Login</Button>
+          <CircleBackground />
+        </LoginContainer>
+      </LoginForm>
+    </LoginWrapper>
   );
 };
 

@@ -11,4 +11,11 @@ export const theme = {
     gradientTwo: '#38CEE8',
     gradientOne: '#63eae1',
   },
+  fontSize: {
+    xl: '24px',
+    l: '17px',
+    m: '12px',
+    s: '11px',
+    xs: '10px',
+  },
 };

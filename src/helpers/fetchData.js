@@ -13,5 +13,8 @@ export async function fetchData(url = '', token = null, data = {}) {
     referrerPolicy: 'no-referrer',
     body: JSON.stringify(data),
   });
+  if (!response.ok) {
+    throw Error('could not fetch data for that resource');
+  }
   return response.json();
 }
