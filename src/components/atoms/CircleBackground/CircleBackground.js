@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CircleBackground = styled.div`
   position: absolute;
-  width: 700px;
+  width: 1000px;
   height: 700px;
   background-color: #f9f5ff;
   border-radius: 50%;
