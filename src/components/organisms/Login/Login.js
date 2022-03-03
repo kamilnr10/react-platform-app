@@ -20,6 +20,12 @@ const Login = () => {
     signIn(email, password);
   };
 
+  const handleKeypress = (e) => {
+    if (e.keyCode === 13) {
+      handleSubmit();
+    }
+  };
+
   return (
     <LoginForm as="form" onSubmit={handleSubmit}>
       <LoginContainer>
@@ -34,6 +40,7 @@ const Login = () => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          onKeyPress={handleKeypress}
           placeholder="Password"
         />
         <Button>Login</Button>

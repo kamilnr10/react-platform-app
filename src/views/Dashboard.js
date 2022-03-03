@@ -34,7 +34,6 @@ const Dashboard = () => {
 
   const handlePageClick = (e) => {
     const selectedPage = e.selected;
-    console.log(selectedPage);
     fetchData('https://thebetter.bsgroup.eu/Media/GetMediaList', token, {
       MediaListId: selectedPage + data.MediaListId,
       IncludeCategories: false,
@@ -44,7 +43,6 @@ const Dashboard = () => {
       PageSize: 15,
     })
       .then((data) => {
-        console.log('handleClick: ', data.Entities);
         setMoviesList(data.Entities);
       })
       .catch((err) => console.log(err));

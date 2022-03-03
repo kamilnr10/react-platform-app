@@ -17,9 +17,9 @@ async function postData(url = '', data = {}) {
     body: JSON.stringify(data),
   });
 
-  for (var pair of response.headers.entries()) {
-    console.log(pair[0] + ': ' + pair[1]);
-  }
+  // for (var pair of response.headers.entries()) {
+  //   console.log(pair[0] + ': ' + pair[1]);
+  // }
   return response.json();
 }
 
