@@ -34,7 +34,7 @@ import { fetchData } from 'helpers/fetchData';
 //   return response.json();
 // }
 
-export const Movie = () => {
+export const MoviePlayer = () => {
   const [movieData, setMovieData] = useState({});
   const navigate = useNavigate();
   let { id } = useParams();
@@ -44,11 +44,6 @@ export const Movie = () => {
     fetchData('https://thebetter.bsgroup.eu/Media/GetMediaPlayInfo', token, {
       MediaId: id,
       StreamType: 'TRIAL',
-      // IncludeCategories: true,
-      // IncludePeople: true,
-      // IncludeImages: true,
-      // IncludeSimilarMedia: true,
-      // IncludePurchaseOffers: true,
     })
       .then((data) => {
         setMovieData(data);
@@ -73,21 +68,23 @@ const AuthenticatedApp = () => {
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route
-            path="/dashboard/*"
+            path="/dashboard/"
             element={
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/:id"
-            element={
-              <ProtectedRoute>
-                <Movie />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/dashboard">
+            <Route
+              path=":id"
+              element={
+                <ProtectedRoute>
+                  <MoviePlayer />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
         </Routes>
       </Wrapper>
     </MainTemplate>
@@ -104,39 +101,7 @@ const UnauthenticatedApp = () => {
 
 function App() {
   const { isAuth } = useUserAuth();
-  // const auth = useAuth();
-  // console.log(auth);
-  // return (
-  //   <Router>
-  //     <ThemeProvider theme={theme}>
-  //       <GlobalStyle />
-  //       <UserAuthContextProvider>
-  //         <Wrapper>
-  //           <Routes>
-  //             <Route exact path="/" element={<Login />} />
-  //             <Route
-  //               path="/dashboard/*"
-  //               element={
-  //                 <ProtectedRoute>
-  //                   <Home />
-  //                 </ProtectedRoute>
-  //               }
-  //             />
-  //             <Route
-  //               path="/:id"
-  //               element={
-  //                 <ProtectedRoute>
-  //                   <Movie />
-  //                 </ProtectedRoute>
-  //               }
-  //             />
-  //           </Routes>
-  //         </Wrapper>
-  //       </UserAuthContextProvider>
-  //     </ThemeProvider>
-  //   </Router>
-  // )
-  //
+
   return isAuth ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 }
 
