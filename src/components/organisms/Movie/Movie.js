@@ -12,7 +12,11 @@ export const Movie = ({ Id, Title, Images, Description }) => {
       <h4>{Title}</h4>
       <ImageContainer>
         <Image>
-          <img src={Images[0]?.Url} alt={Title} />
+          {Images.length ? (
+            <img src={Images[0]?.Url} alt={Title} />
+          ) : (
+            <p>no image for this movie</p>
+          )}
         </Image>
       </ImageContainer>
       <p>{Description}</p>

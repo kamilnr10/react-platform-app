@@ -45,13 +45,17 @@ export const MoviePlayer = () => {
     <MoviePlayerWrapper>
       <ReturnButton onClick={() => navigate(-1)}>go back</ReturnButton>
       {error && error.message}
-      <ReactPlayer
-        url={movieData.ContentUrl}
-        playing={true}
-        controls={true}
-        width="100%"
-        height="100%"
-      />
+      {movieData.ContentUrl ? (
+        <ReactPlayer
+          url={movieData.ContentUrl}
+          playing={true}
+          controls={true}
+          width="100%"
+          height="100%"
+        />
+      ) : (
+        <p>there is no data for this movie</p>
+      )}
     </MoviePlayerWrapper>
   );
 };

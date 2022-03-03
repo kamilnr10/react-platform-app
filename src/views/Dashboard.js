@@ -47,6 +47,7 @@ const Dashboard = () => {
       PageSize: 15,
     })
       .then((data) => {
+        console.log(data);
         setMoviesList(data.Entities);
       })
       .catch((error) => setError(error.message));
