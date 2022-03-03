@@ -1,3 +1,11 @@
+#react-platform-app
+ app with login screen which shows movies list and media player.
+Technologies whis are used:
+- react-paginate
+- react-player
+- react-router
+- styled-components
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
