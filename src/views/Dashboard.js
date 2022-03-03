@@ -4,39 +4,17 @@ import { fetchData } from 'helpers/fetchData';
 import { Movie } from 'components/organisms/Movie/Movie';
 import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
-
-const PaginationWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-
-  ul {
-    display: flex;
-
-    li {
-      width: 25px;
-      padding: 5px;
-      margin: 10px 20px;
-      text-align: center;
-      list-style: none;
-
-      &.active {
-        background-color: lightblue;
-      }
-    }
-  }
-`;
+import { PaginationWrapper } from './Dashboard.styles';
 
 const Dashboard = () => {
   const [moviesList, setMoviesList] = useState([]);
-  const { isAuth, user } = useUserAuth();
   const [offset, setOffset] = useState(0);
   const [perPage] = useState(5);
   const [pageCount, setPageCount] = useState(0);
-  const itemsPerPage = 3;
+  const token = localStorage.getItem('token');
 
   const data = {
-    MediaListId: 4,
+    MediaListId: 3,
     IncludeCategories: false,
     IncludeImages: true,
     IncludeMedia: false,
@@ -46,22 +24,30 @@ const Dashboard = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+
     fetchData('https://thebetter.bsgroup.eu/Media/GetMediaList', token, data)
       .then((data) => {
-        console.log(data.Entities);
-        // console.log(isAuth);
-        const slice = data.Entities.slice(offset, offset + perPage);
-        const postMoviesList = slice.map((item) => (
-          <Movie key={item.Id} {...item} />
-        ));
-        setMoviesList(postMoviesList);
-        setPageCount(Math.ceil(data.Entities.length / perPage));
+        setMoviesList(data.Entities);
       })
       .catch((err) => console.log(err));
-  }, [offset]);
+  }, []);
 
   const handlePageClick = (e) => {
     const selectedPage = e.selected;
+    console.log(selectedPage);
+    fetchData('https://thebetter.bsgroup.eu/Media/GetMediaList', token, {
+      MediaListId: selectedPage + data.MediaListId,
+      IncludeCategories: false,
+      IncludeImages: true,
+      IncludeMedia: false,
+      PageNumber: 1,
+      PageSize: 15,
+    })
+      .then((data) => {
+        console.log('handleClick: ', data.Entities);
+        setMoviesList(data.Entities);
+      })
+      .catch((err) => console.log(err));
     setOffset(selectedPage + 1);
   };
 
@@ -73,7 +59,7 @@ const Dashboard = () => {
           nextLabel={'next'}
           breakLabel={'...'}
           breakClassName={'break-me'}
-          pageCount={pageCount}
+          pageCount={3}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
           onPageChange={handlePageClick}
@@ -82,7 +68,9 @@ const Dashboard = () => {
           activeClassName={'active'}
         />
       </PaginationWrapper>
-      {moviesList}
+      {moviesList.map((movie) => (
+        <Movie key={movie.Id} {...movie} />
+      ))}
     </div>
   );
 };

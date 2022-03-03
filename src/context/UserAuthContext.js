@@ -12,14 +12,6 @@ async function postData(url = '', data = {}) {
     headers: {
       'Content-Type': 'application/json',
     },
-    // data: {
-    //   Username: 'test@bsgroup.eu',
-    //   Password: 'Test12!@',
-    //   Device: {
-    //     PlatformCode: 'WEB',
-    //     Name: '7a6a86e5-356f-4795-8998-305e1b205531',
-    //   },
-    // },
     redirect: 'follow',
     referrerPolicy: 'no-referrer',
     body: JSON.stringify(data),
@@ -38,25 +30,6 @@ export const UserAuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState('');
   const navigate = useNavigate();
-
-  //   useEffect(() => {
-  //     const token = localStorage.getItem('token');
-  //     if (token) {
-  //       (async () => {
-  //         try {
-  //           const response = await axios.get('/', {
-  //             headers: {
-  //               authorization: `Bearer ${token}`,
-  //             },
-  //           });
-  //           console.log('token', token);
-  //           setUser(response.data);
-  //         } catch (e) {
-  //           console.log(e);
-  //         }
-  //       })();
-  //     }
-  //   }, []);
 
   const signIn = (email, password) => {
     const login = {
