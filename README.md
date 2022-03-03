@@ -5,6 +5,7 @@ Technologies whis are used:
 - react-player
 - react-router
 - styled-components
+- context
 
 # Getting Started with Create React App
 
