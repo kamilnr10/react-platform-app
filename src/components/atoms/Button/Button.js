@@ -8,5 +8,5 @@ export const Button = styled.button`
   border-radius: 10px;
   color: white;
   background-image: linear-gradient(to right, #756ef4 0%, #be85fa 100%);
-  /* box-shadow: 0px 7px 31px 19px rgba(56, 206, 232, 1); */
+  cursor: pointer;
 `;
