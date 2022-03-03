@@ -1,6 +1,6 @@
 #react-platform-app
  app with login screen which shows movies list and media player.
-Technologies whis are used:
+Technologies which are used:
 - react-paginate
 - react-player
 - react-router
